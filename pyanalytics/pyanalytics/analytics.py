@@ -34,6 +34,7 @@ def piwik_opts(tracking_url, action_name):
         'idsite': PIWIK_SITE_ID,
         'rec': PIWIK_REC,
         'url': tracking_url,
+        'cvar': { 'phone_name': 'ablbalbalba' },
         'action_name': action_name
     }
 
@@ -85,12 +86,12 @@ def send_data_asynchronously(piwik_api_url, tracking_url, action_name):
     return "OK"
 
 
-def track_request(api_id, request=None, async=False):
+def track_request(api_id, api_version, http_method, entity_name, request=None, async=False):
     if request:
         # e.g. extract the request data like user-agent etc.
         pass
 
-    tracking_url = '{}/{}'.format(GENAPI_TRACKING_HOST, api_id)
+    tracking_url = '{}/{}/v{}/{}/{}'.format(GENAPI_TRACKING_HOST, api_id, api_version, http_method, entity_name)
     if async:
         analytics = send_data_asynchronously(
             piwik_api_url=PIWIK_API_URL, # Piwik Analytics host name
@@ -108,8 +109,17 @@ def track_request(api_id, request=None, async=False):
 
 if __name__ == "__main__":
     api_id = 'universalapi'
+    api_version = 1
+    entity_name = 'wookies'
+    http_method = 'DELETE'
 
     # Send the analytics tracking data
-    for i in range(1, 20):
+    for i in range(1, 21):
         print "NUM: {}".format(i)
-        print track_request(api_id=api_id, async=True)
+        print track_request(
+            api_id=api_id,
+            api_version=api_version,
+            http_method=http_method,
+            entity_name=entity_name,
+            async=True
+        )
