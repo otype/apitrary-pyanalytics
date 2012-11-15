@@ -11,7 +11,7 @@ import urllib
 from tornado import httpclient, ioloop
 from tornado.httpclient import HTTPRequest
 
-PIWIK_SITE_ID = '1'
+PIWIK_SITE_ID = '3'
 PIWIK_REC = '1'
 PIWIK_HOST = 'app1.dev.apitrary.net'
 PIWIK_API_URL = 'http://{}/piwik/piwik.php'.format(PIWIK_HOST)
