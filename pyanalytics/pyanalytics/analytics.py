@@ -110,8 +110,8 @@ def track_request(api_id, api_version, http_method, entity_name, request=None, a
 if __name__ == "__main__":
     api_id = 'universalapi'
     api_version = 1
-    entity_name = 'wookies'
-    http_method = 'DELETE'
+    entity_name = 'users'
+    http_method = 'GET'
 
     # Send the analytics tracking data
     for i in range(1, 21):
